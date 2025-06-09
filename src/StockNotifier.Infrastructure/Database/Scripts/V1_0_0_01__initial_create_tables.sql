@@ -1,0 +1,25 @@
+BEGIN TRANSACTION;  
+GO  
+
+CREATE TABLE Stocks (  
+   Id INT NOT NULL PRIMARY KEY IDENTITY,  
+   Name NVARCHAR(255) NOT NULL,  
+   Value INT NOT NULL,  
+   CreatedAt DATETIME2 NOT NULL,  
+   ModifiedAt DATETIME2 NOT NULL  
+);  
+
+CREATE TABLE Alerts (  
+   Id INT NOT NULL PRIMARY KEY IDENTITY,  
+   Name NVARCHAR(255) NOT NULL,  
+   ThresholdType INT NOT NULL,  
+   ThresholdValue INT NOT NULL, 
+   StockId INT NOT NULL,  
+   IsActive BIT NOT NULL,  
+   CreatedAt DATETIME2 NOT NULL,  
+   ModifiedAt DATETIME2 NOT NULL,  
+   CONSTRAINT FK_Alerts_Stocks FOREIGN KEY (StockId) REFERENCES Stocks(Id)  
+);  
+
+COMMIT;  
+GO
