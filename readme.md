@@ -30,7 +30,8 @@ A real-time stock alert notification system built with ASP.NET Core (.NET 9), Si
 1. **Clone the repository:**
 
 2. **Configure appsettings:**
-   - Update `appsettings.json` with your database, cache, and SignalR settings.
+	- Update `appsettings.json` with your database, cache, and SignalR settings.
+	- Create database "stocknotifier" in your SQL Server instance.
 
 3. **Restore and build:**
 
