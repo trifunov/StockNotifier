@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\CreateStock\" />
-    <Folder Include="Queries\GetAlerts\" />
     <Folder Include="Queries\GetAlertById\" />
     <Folder Include="Queries\GetStocks\" />
   </ItemGroup>

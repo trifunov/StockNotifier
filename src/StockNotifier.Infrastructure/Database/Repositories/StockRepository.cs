@@ -53,9 +53,17 @@ namespace StockNotifier.Infrastructure.Database.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Stock> GetStocks()
+        public async Task<List<Stock>> GetStocksAsync()
         {
-            throw new NotImplementedException();
+            var stocks = await _dapperDataContext.Connection!
+                .QueryAsync<Stock>(
+                    sql: "GetStocks",
+                    param: null,
+                    commandType: CommandType.StoredProcedure,
+                    transaction: _dapperDataContext.Transaction,
+                    commandTimeout: _dapperDataContext.Connection!.ConnectionTimeout
+                );
+            return stocks.ToList();
         }
     }
 }

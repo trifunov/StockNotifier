@@ -11,7 +11,7 @@ namespace StockNotifier.Application.Repositories
     {
         Task CreateUpdateAlertAsync(Alert alert);
         Alert GetAlert(int id);
-        List<Alert> GetAlerts();
+        Task<List<Alert>> GetAlertsAsync();
         List<Alert> GetAlertsByStockId(int stockId);
         void DeleteAlert(int id);
     }

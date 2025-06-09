@@ -2,13 +2,16 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using StockNotifier.Application.Core.Cache;
 using StockNotifier.Application.Options;
 using StockNotifier.Application.Repositories;
+using StockNotifier.Infrastructure.Cache;
 using StockNotifier.Infrastructure.Database.Connections;
 using StockNotifier.Infrastructure.Database.Dapper;
 using StockNotifier.Infrastructure.Database.Jobs;
 using StockNotifier.Infrastructure.Database.Migrator;
 using StockNotifier.Infrastructure.Database.Repositories;
+using StockNotifier.Infrastructure.SignalRServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +39,10 @@ namespace StockNotifier.Infrastructure
 
             services.AddScoped<IAlertRepository, AlertRepository>();
             services.AddScoped<IStockRepository, StockRepository>();
+            services.AddMemoryCache();
+            services.AddSignalR();
+            services.AddScoped<ICacheService, MemoryCacheService>();
+            services.AddScoped<IAlertHub, AlertHub>();
 
             services.AddHangfire(x => x.UseSqlServerStorage(connectionString));
             services.AddHangfireServer();

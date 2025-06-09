@@ -10,7 +10,7 @@ namespace StockNotifier.Application.Commands.CreateAlert
 {
     public sealed record CreateAlertRequest : IRequest<bool>
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public ThresholdType ThresholdType { get; set; }
 

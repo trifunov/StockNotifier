@@ -11,7 +11,7 @@ namespace StockNotifier.Application.Repositories
     {
         Task CreateUpdateStock(Stock stock);
         Stock GetStock(int id);
-        List<Stock> GetStocks();
+        Task<List<Stock>> GetStocksAsync();
         Stock GetStockByName(string name);
         void DeleteStock(int id);
     }

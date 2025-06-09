@@ -2,13 +2,15 @@
 using StockNotifier.Application.Commands.CreateAlert;
 using StockNotifier.Application.Core.Command;
 using StockNotifier.Application.Core.Query;
+using StockNotifier.Application.Queries.GetAlerts;
+using StockNotifier.Domain.Entities;
 using System.Threading;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StockNotifier.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/alerts")]
     [ApiController]
     public class AlertController : ControllerBase
     {
@@ -23,9 +25,10 @@ namespace StockNotifier.API.Controllers
 
         // GET: api/<AlertController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get([FromQuery] GetAlertsRequest query, CancellationToken cancellationToken)
         {
-            return new string[] { "value1", "value2" };
+            var alerts = await _queryDispatcher.QueryAsync(query, CancellationToken.None).ConfigureAwait(false);
+            return Ok(alerts);
         }
 
         // GET api/<AlertController>/5
